@@ -1,26 +1,28 @@
+// Author: Josef Hülk
+
 async function fetchData() {
   const response = await fetch("data.json"); // Replace 'data.json' with the path to your JSON file
   const jsonData = await response.json();
   console.log(jsonData);
 
-  jsonData
+  jsonData;
 
   return jsonData;
 }
 
-  function replaceKeyWithLabel(data, keyToReplace) {
-    let returnValue = null;
+function replaceKeyWithLabel(data, keyToReplace) {
+  let returnValue = null;
 
-    data.symptoms.forEach(item => {
-      if(keyToReplace === item.key){
-        returnValue = item.label;
-      }
-    });
-    if(returnValue === null){
-      console.error("Can't find symptom label.")
+  data.symptoms.forEach((item) => {
+    if (keyToReplace === item.key) {
+      returnValue = item.label;
     }
-    return returnValue;
+  });
+  if (returnValue === null) {
+    console.error("Can't find symptom label.");
   }
+  return returnValue;
+}
 
 function renderData(data) {
   const container = document.getElementById("data-container");
@@ -38,7 +40,10 @@ function renderData(data) {
                                 ? item.symptoms
                                     .map(
                                       (symptom) => `
-                                <li>${replaceKeyWithLabel(data, symptom.key)}</li>
+                                <li>${replaceKeyWithLabel(
+                                  data,
+                                  symptom.key
+                                )}</li>
                                 <ul>
                                     ${
                                       symptom.logs && symptom.logs.length > 0
