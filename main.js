@@ -1,12 +1,15 @@
 // Author: Josef Hülk
-
 async function fetchData() {
   const response = await fetch("data.json"); // Replace 'data.json' with the path to your JSON file
   const jsonData = await response.json();
   console.log(jsonData);
+  return jsonData;
+}
 
-  jsonData;
-
+async function fetchTransalations() {
+  const response = await fetch("translations.json");
+  const jsonData = await response.json();
+  console.log(jsonData);
   return jsonData;
 }
 
@@ -32,8 +35,8 @@ function renderData(data) {
     const itemDiv = document.createElement("div");
     itemDiv.innerHTML = `
                       <div class="day-card">
-                        <h2>${item.date}</h2>
-                        <h3>Symptoms:</h3>
+                        <h2>${translateDate(item.date)}</h2>
+                        <h3>${translate("Symptoms")}:</h3>
                         <ul>
                             ${
                               item.symptoms && item.symptoms.length > 0
@@ -50,7 +53,11 @@ function renderData(data) {
                                         ? symptom.logs
                                             .map(
                                               (log) => `
-                                        <li><b>${log.time}</b>: ${log.pain} / 5 intensity</li>
+                                        <li><b>${log.time}</b>: ${
+                                                log.pain
+                                              } / 5 ${translate(
+                                                "intensity"
+                                              )}</li>
                                     `
                                             )
                                             .join("")
@@ -63,7 +70,7 @@ function renderData(data) {
                                 : ""
                             }
                         </ul>
-                        <h3>Meals:</h3>
+                        <h3>${translate("Meals")}:</h3>
                         <ul>
                             ${
                               item.meals && item.meals.length > 0
@@ -78,7 +85,7 @@ function renderData(data) {
                                 : ""
                             }
                         </ul>
-                        <h3>Notes:</h3>
+                        <h3>${translate("Logs")}:</h3>
                         <ul>
                             ${
                               item.logs && item.logs.length > 0
@@ -92,7 +99,7 @@ function renderData(data) {
                                 : "∅"
                             }
                         </ul>
-                        <h3>Medications:</h3>
+                        <h3>${translate("Medications")}:</h3>
                         <ul>
                             ${
                               item.meds && item.meds.length > 0
@@ -112,9 +119,39 @@ function renderData(data) {
   });
 }
 
+function translate(input) {
+  if (translations[input] && translations[input][currentLanguage]) {
+    return translations[input][currentLanguage];
+  } else {
+    // Fallback to input value
+    return input;
+  }
+}
+
+function translateDate(dateStr) {
+  if (currentLanguage === "de") {
+    const date = new Date(dateStr);
+
+    const germanDateFormat = new Intl.DateTimeFormat("de-DE", {
+      weekday: 'long',
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return germanDateFormat.format(date);
+  }
+  return dateStr; // cancel date translation
+}
+
+let translations;
+let data;
+const currentLanguage = "de";
+
 async function initialize() {
   try {
-    let data = await fetchData();
+    data = await fetchData();
+    translations = await fetchTransalations();
     renderData(data);
   } catch (error) {
     console.error("Error loading or rendering data:", error);

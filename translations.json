@@ -1,0 +1,32 @@
+{
+    "Symptoms": {
+        "en": "Symptoms",
+        "fr": "?",
+        "de": "Symptome"
+    },
+    "Meals": {
+        "en": "Meals",
+        "fr": "?",
+        "de": "Ernährung"
+    },
+    "Logs": {
+        "en": "Notes",
+        "fr": "?",
+        "de": "Notizen"
+    },
+    "Medications": {
+        "en": "Medications",
+        "fr": "?",
+        "de": "Medikamente"
+    },
+    "Pagetitle": {
+        "en": "LifeNotes Print Tool",
+        "fr": "?",
+        "de": "LifeNotes Druck-Werkzeug"
+    },
+    "intensity": {
+        "en": "intensity",
+        "fr": "?",
+        "de": "Intensität"
+    }
+}
