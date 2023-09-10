@@ -1,10 +1,11 @@
-// Author: Josef Hülk
-async function fetchData() {
-  const response = await fetch("data.json"); // Replace 'data.json' with the path to your JSON file
-  const jsonData = await response.json();
-  console.log(jsonData);
-  return jsonData;
-}
+
+// Note: You can use this function to laod the data from a file. This is disabled because users are supposed to upload the .json in the interface
+// async function fetchData() {
+//   const response = await fetch("data.json"); // Replace 'data.json' with the path to your JSON file
+//   const jsonData = await response.json();
+//   console.log(jsonData);
+//   return jsonData;
+// }
 
 async function fetchTransalations() {
   const response = await fetch("translations.json");
@@ -27,9 +28,27 @@ function replaceKeyWithLabel(data, keyToReplace) {
   return returnValue;
 }
 
-function renderData(data) {
+function renderData() {
   const container = document.getElementById("data-container");
+
+  if(data === undefined){
+    container.innerHTML = `
+                            <br>
+                            <h2>How to use:</h2>
+                            <ol>
+                              <li> Save LifeNotes backup in the App Settings </li>
+                              <li> Find the file in you phones file manager </li>
+                              <li> Import the file here </li>
+
+                              <p>Your data will not leave your device. </p>
+                            </ol>
+                          `;
+    return null;
+  }
+
+
   container.innerHTML = ""; // Clear previous content
+
 
   data.days.forEach((item) => {
     const itemDiv = document.createElement("div");
@@ -129,33 +148,59 @@ function translate(input) {
 }
 
 function translateDate(dateStr) {
-  if (currentLanguage === "de") {
-    const date = new Date(dateStr);
+  const date = new Date(dateStr);
 
-    const germanDateFormat = new Intl.DateTimeFormat("de-DE", {
-      weekday: 'long',
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const germanDateFormat = new Intl.DateTimeFormat(currentLanguage, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
-    return germanDateFormat.format(date);
-  }
-  return dateStr; // cancel date translation
+  return germanDateFormat.format(date);
 }
 
 let translations;
 let data;
-const currentLanguage = "de";
+let currentLanguage = "en-EN";
 
 async function initialize() {
   try {
-    data = await fetchData();
     translations = await fetchTransalations();
-    renderData(data);
+    renderData();
   } catch (error) {
     console.error("Error loading or rendering data:", error);
   }
 }
 
 initialize();
+
+document.querySelector("#printBtn").addEventListener("click", () => {
+  window.print();
+});
+
+document.querySelector("#language-selector").addEventListener("change", (e) => {
+  // console.log(e.target.value);
+  currentLanguage = e.target.value;
+  renderData();
+});
+
+document.querySelector("#file-input").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      try {
+        const jsonData = JSON.parse(e.target.result);
+        data = jsonData;
+        renderData();
+      } catch (error) {
+        console.error("Error parsing JSON file:", error);
+        alert("Error parsing JSON file. Please upload a valid JSON file.");
+      }
+    };
+    reader.readAsText(file);
+  }
+});
