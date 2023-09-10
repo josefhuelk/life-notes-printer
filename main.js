@@ -1,4 +1,3 @@
-
 // Note: You can use this function to laod the data from a file. This is disabled because users are supposed to upload the .json in the interface
 // async function fetchData() {
 //   const response = await fetch("data.json"); // Replace 'data.json' with the path to your JSON file
@@ -31,7 +30,7 @@ function replaceKeyWithLabel(data, keyToReplace) {
 function renderData() {
   const container = document.getElementById("data-container");
 
-  if(data === undefined){
+  if (data === undefined) {
     container.innerHTML = `
                             <br>
                             <h2>How to use:</h2>
@@ -48,9 +47,7 @@ function renderData() {
     return null;
   }
 
-
   container.innerHTML = ""; // Clear previous content
-
 
   data.days.forEach((item) => {
     const itemDiv = document.createElement("div");
@@ -78,7 +75,10 @@ function renderData() {
                                                 log.pain
                                               } / 5 ${translate(
                                                 "intensity"
-                                              )}</li>
+                                              )}
+
+                                              <i>${log.detail || ""}</i>
+                                        </li>
                                     `
                                             )
                                             .join("")
@@ -127,7 +127,7 @@ function renderData() {
                                 ? item.meds
                                     .map(
                                       (med) => `
-                                <li>Type: ${med.type}</li>
+                                <li><b>${med.time}</b>: ${med.key} (${med.quantity} mg)</li>
                             `
                                     )
                                     .join("")
