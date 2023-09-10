@@ -14,8 +14,8 @@ function renderData(data) {
     const itemDiv = document.createElement("div");
     itemDiv.innerHTML = `
                       <div class="day-card">
-                        <h2>Date: ${item.date}</h2>
-                        <p>Symptoms:</p>
+                        <h2>${item.date}</h2>
+                        <h3>Symptoms:</h3>
                         <ul>
                             ${
                               item.symptoms && item.symptoms.length > 0
@@ -29,8 +29,7 @@ function renderData(data) {
                                         ? symptom.logs
                                             .map(
                                               (log) => `
-                                        <li>Time: ${log.time}</li>
-                                        <li>Intensity: ${log.pain} / 5</li>
+                                        <li><b>${log.time}</b>: ${log.pain} / 5 intensity</li>
                                     `
                                             )
                                             .join("")
@@ -43,36 +42,36 @@ function renderData(data) {
                                 : ""
                             }
                         </ul>
-                        <p>Meals:</p>
+                        <h3>Meals:</h3>
                         <ul>
                             ${
                               item.meals && item.meals.length > 0
                                 ? item.meals
                                     .map(
                                       (meal) => `
-                                <li>Time: ${meal.time}, Title: ${meal.key}</li>
-                                <p>Details: ${meal.detail || "∅"}</p>
+                                <li><b>${meal.time}</b>: ${meal.key}</li>
+                                <p><i> ${meal.detail || "∅"}</i></p>
                             `
                                     )
                                     .join("")
                                 : ""
                             }
                         </ul>
-                        <p>Logs:</p>
+                        <h3>Notes:</h3>
                         <ul>
                             ${
                               item.logs && item.logs.length > 0
                                 ? item.logs
                                     .map(
                                       (log) => `
-                                <li>Type: ${log.type}, Time: ${log.time}, Title: ${log.key}</li>
+                                <li><b>${log.time}</b>: ${log.key}</li>
                             `
                                     )
                                     .join("")
                                 : "∅"
                             }
                         </ul>
-                        <p>Medications:</p>
+                        <h3>Medications:</h3>
                         <ul>
                             ${
                               item.meds && item.meds.length > 0
