@@ -3,8 +3,24 @@ async function fetchData() {
   const jsonData = await response.json();
   console.log(jsonData);
 
+  jsonData
+
   return jsonData;
 }
+
+  function replaceKeyWithLabel(data, keyToReplace) {
+    let returnValue = null;
+
+    data.symptoms.forEach(item => {
+      if(keyToReplace === item.key){
+        returnValue = item.label;
+      }
+    });
+    if(returnValue === null){
+      console.error("Can't find symptom label.")
+    }
+    return returnValue;
+  }
 
 function renderData(data) {
   const container = document.getElementById("data-container");
@@ -22,7 +38,7 @@ function renderData(data) {
                                 ? item.symptoms
                                     .map(
                                       (symptom) => `
-                                <li>${symptom.key}</li>
+                                <li>${replaceKeyWithLabel(data, symptom.key)}</li>
                                 <ul>
                                     ${
                                       symptom.logs && symptom.logs.length > 0
