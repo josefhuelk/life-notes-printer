@@ -41,6 +41,8 @@ function renderData() {
                               <li> Import the file here </li>
 
                               <p>Your data will not leave your device. </p>
+
+                              <p> Looking for a quick demo? Use this <a download="lifenotes-demo-backup.json" href="./demo-lifenotes-backup.json">test file</a></p>
                             </ol>
                           `;
     return null;
