@@ -6,6 +6,7 @@ Allows you to render and print you health diary from the LifeNotes App (https://
 - enables you to print your data (e.g. for sharing)
 - works locally whithout sending your data to a server
 - Multilingual (English, French, German)
+- Open Source
 
 ## Installation
 1. Open https://josefhuelk.github.io/life-notes-printer/
