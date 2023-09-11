@@ -42,7 +42,7 @@ interface Medication {
 async function fetchTranslations(): Promise<{
   [key: string]: { [language: string]: string };
 }> {
-  const response = await fetch("translations.json");
+  const response = await fetch("./src/translations.json");
   const jsonData = await response.json();
   console.log(jsonData);
   return jsonData;
@@ -76,7 +76,7 @@ function renderData() {
 
                               <p>Your data will not leave your device. </p>
 
-                              <p> Looking for a quick demo? Use this <a download="lifenotes-demo-backup.json" href="./demo-lifenotes-backup.json">test file</a></p>
+                              <p> Looking for a quick demo? Use this <a download="lifenotes-demo-backup.json" href="./src/demo-lifenotes-backup.json">test file</a></p>
                             </ol>
                           `;
     return null;

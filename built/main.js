@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var _a, _b, _c;
 function fetchTranslations() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch("translations.json");
+        const response = yield fetch("./src/translations.json");
         const jsonData = yield response.json();
         console.log(jsonData);
         return jsonData;
@@ -48,7 +48,7 @@ function renderData() {
 
                               <p>Your data will not leave your device. </p>
 
-                              <p> Looking for a quick demo? Use this <a download="lifenotes-demo-backup.json" href="./demo-lifenotes-backup.json">test file</a></p>
+                              <p> Looking for a quick demo? Use this <a download="lifenotes-demo-backup.json" href="./src/demo-lifenotes-backup.json">test file</a></p>
                             </ol>
                           `;
         return null;
