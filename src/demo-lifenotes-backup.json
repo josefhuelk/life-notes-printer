@@ -1,0 +1,118 @@
+{
+  "days": [
+    {
+      "date": "2023-09-10",
+      "symptomOverviews": [],
+      "symptoms": [
+        {
+          "type": "symptom",
+          "key": "stomachpain",
+          "logs": [
+            {
+              "type": "symptomLog",
+              "time": "17:00",
+              "key": "stomachpain",
+              "pain": 3
+            }
+          ]
+        },
+        {
+          "type": "symptom",
+          "key": "headache",
+          "logs": [
+            {
+              "type": "symptomLog",
+              "time": "15:00",
+              "key": "headache",
+              "pain": 2
+            }
+          ]
+        }
+      ],
+      "logs": [{ "type": "log", "time": "08:34", "key": "Bad mood" }],
+      "meds": [
+        {
+          "type": "med",
+          "time": "16:33",
+          "key": "Ibuprofen",
+          "quantity": "400"
+        }
+      ],
+      "meals": [
+        {
+          "type": "meal",
+          "time": "08:35",
+          "key": "Toast",
+          "detail": "with Butter"
+        },
+        {
+          "type": "meal",
+          "time": "13:30",
+          "key": "Curry",
+          "detail": "Potato, Lentils, bell pepper, curry powder, coconut milk "
+        },
+        { "type": "meal", "time": "16:32", "key": "Chocolate Cake" },
+        {
+          "type": "meal",
+          "time": "18:32",
+          "key": "Bread ",
+          "detail": "with strawberry jam"
+        }
+      ],
+      "wakeUp": "",
+      "goToBed": "",
+      "_id": "2023-09-10"
+    },
+    {
+      "date": "2023-09-09",
+      "symptomOverviews": [],
+      "symptoms": [
+        {
+          "type": "symptom",
+          "key": "stomachpain",
+          "logs": [
+            {
+              "type": "symptomLog",
+              "time": "10:35",
+              "key": "stomachpain",
+              "pain": 2,
+              "detail": "for a few minutes"
+            }
+          ]
+        }
+      ],
+      "logs": [{ "type": "log", "time": "11:36", "key": "Workout" }],
+      "meds": [],
+      "meals": [
+        { "type": "meal", "time": "10:01", "key": "English Breakfast" },
+        {
+          "type": "meal",
+          "time": "18:36",
+          "key": "Bread",
+          "detail": "with boiled eggs and onions"
+        },
+        {
+          "type": "meal",
+          "time": "13:03",
+          "key": "Wraps",
+          "detail": "with lettuce and avocado"
+        }
+      ],
+      "wakeUp": "",
+      "goToBed": "",
+      "_id": "2023-09-09"
+    }
+  ],
+  "symptoms": [
+    { "key": "stomachpain", "label": "Stomach pain", "_id": "stomachpain" },
+    { "key": "headache", "label": "Headache", "_id": "headache" }
+  ],
+  "settings": {
+    "targetSymptomKey": "",
+    "language": "en",
+    "timeFormat": "eu",
+    "firstStart": false,
+    "lastInstall": "",
+    "_id": "settings"
+  }
+}
